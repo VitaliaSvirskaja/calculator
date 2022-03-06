@@ -1,25 +1,15 @@
 import "./style.css";
-
-console.log("Hello World!");
+import { Operator } from "./Operator";
 
 let firstOperand = "";
 let secondOperand = "";
-let operator = "";
+let operator: Operator | null = null;
 let result: number = 0;
 
-function setOperand(operand: string) {
-  if (operator === "") {
-    firstOperand += operand;
-    console.log(firstOperand);
-  } else {
-    secondOperand += operand;
-    console.log(secondOperand);
-  }
-}
-
 const clear = document.querySelector<HTMLButtonElement>(".clear");
+
 clear?.addEventListener("click", function () {
-  operator = "";
+  operator = null;
   firstOperand = "";
   secondOperand = "";
   showCalculation("");
@@ -49,7 +39,11 @@ function showInput() {
 const buttons = document.querySelectorAll(".number");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    setOperand(button.innerHTML);
+    if (operator === null) {
+      firstOperand += button.innerHTML;
+    } else {
+      secondOperand += button.innerHTML;
+    }
     showInput();
   });
 });
@@ -61,7 +55,7 @@ operators.forEach((operatorButton) => {
     if (attribute === null) {
       return;
     }
-    operator = attribute;
+    operator = attribute as Operator;
     showCalculation(firstOperand + operator);
   });
 });
@@ -69,16 +63,16 @@ operators.forEach((operatorButton) => {
 const display = document.querySelector(".displayButton");
 display?.addEventListener("click", () => {
   switch (operator) {
-    case "+":
+    case Operator.Add:
       result = parseInt(firstOperand) + parseInt(secondOperand);
       break;
-    case "-":
+    case Operator.Subtract:
       result = parseInt(firstOperand) - parseInt(secondOperand);
       break;
-    case "*":
+    case Operator.Multiply:
       result = parseInt(firstOperand) * parseInt(secondOperand);
       break;
-    case "/":
+    case Operator.Divide:
       result = parseInt(firstOperand) / parseInt(secondOperand);
       break;
   }
