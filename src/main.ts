@@ -55,7 +55,7 @@ operators.forEach((operatorButton) => {
     if (attribute === null) {
       return;
     }
-    if (operator !== null) {
+    if (operator !== null && firstOperand !== "" && secondOperand !== "") {
       calculateResult();
       firstOperand = result.toString();
       secondOperand = "";
