@@ -55,13 +55,18 @@ operators.forEach((operatorButton) => {
     if (attribute === null) {
       return;
     }
+    if (operator !== null) {
+      calculateResult();
+      firstOperand = result.toString();
+      secondOperand = "";
+      showInput();
+    }
     operator = attribute as Operator;
     showCalculation(firstOperand + operator);
   });
 });
 
-const display = document.querySelector(".displayButton");
-display?.addEventListener("click", () => {
+function calculateResult() {
   switch (operator) {
     case Operator.Add:
       result = parseInt(firstOperand) + parseInt(secondOperand);
@@ -76,6 +81,11 @@ display?.addEventListener("click", () => {
       result = parseInt(firstOperand) / parseInt(secondOperand);
       break;
   }
+}
+
+const display = document.querySelector(".displayButton");
+display?.addEventListener("click", () => {
+  calculateResult();
   showCalculation(firstOperand + operator + secondOperand + "=");
   changeInputToResult();
 });
