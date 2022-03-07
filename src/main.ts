@@ -69,16 +69,16 @@ operators.forEach((operatorButton) => {
 function calculateResult() {
   switch (operator) {
     case Operator.Add:
-      result = parseInt(firstOperand) + parseInt(secondOperand);
+      result = parseFloat(firstOperand) + parseFloat(secondOperand);
       break;
     case Operator.Subtract:
-      result = parseInt(firstOperand) - parseInt(secondOperand);
+      result = parseFloat(firstOperand) - parseFloat(secondOperand);
       break;
     case Operator.Multiply:
-      result = parseInt(firstOperand) * parseInt(secondOperand);
+      result = parseFloat(firstOperand) * parseFloat(secondOperand);
       break;
     case Operator.Divide:
-      result = parseInt(firstOperand) / parseInt(secondOperand);
+      result = parseFloat(firstOperand) / parseFloat(secondOperand);
       break;
   }
 }
@@ -104,6 +104,23 @@ deleteButton?.addEventListener("click", () => {
     firstOperand = firstOperand.slice(0, -1);
   } else {
     secondOperand = secondOperand.slice(0, -1);
+  }
+  const resultDisplay = document.querySelector(".input");
+  if (resultDisplay === null) {
+    return;
+  } else if (secondOperand === "") {
+    resultDisplay.textContent = firstOperand;
+  } else {
+    resultDisplay.textContent = secondOperand;
+  }
+});
+
+const decimalButton = document.querySelector(".decimal");
+decimalButton?.addEventListener("click", () => {
+  if (operator === null) {
+    firstOperand = firstOperand + ".";
+  } else {
+    secondOperand = secondOperand + ".";
   }
   const resultDisplay = document.querySelector(".input");
   if (resultDisplay === null) {
