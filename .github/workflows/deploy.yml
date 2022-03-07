@@ -1,0 +1,18 @@
+name: Github Deploy
+on: [push]
+jobs:
+  Deploy-to-Github-Pages:
+    runs-on: macos-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - name: Run Deploy Script
+        run:
+          ./deploy.sh
+        shell: bash
+#      - name: Build Vite Project
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '14'
+#      - run: npm install
+#      - run: npm run build
