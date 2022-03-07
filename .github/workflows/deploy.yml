@@ -5,7 +5,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 #      - name: Run Deploy Script
 #        run: |
 #          chmod +x ./deploy.sh
@@ -20,4 +20,9 @@ jobs:
       - name: Deploy
 #        uses: actions/checkout@v2
         working-directory: ./dist
-        run: git push -f git@github.com:VitaliaSvirskaja/calculator.git main:gh-pages
+        run: |
+          git init
+          git checkout -b main
+          git add -A
+          git commit -m 'deploy'
+          git push -f git@github.com:VitaliaSvirskaja/calculator.git main:gh-pages
