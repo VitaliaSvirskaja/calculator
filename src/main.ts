@@ -97,3 +97,20 @@ function changeInputToResult() {
   }
   showResult.textContent = result.toString();
 }
+
+const deleteButton = document.querySelector(".delete");
+deleteButton?.addEventListener("click", () => {
+  if (operator === null) {
+    firstOperand = firstOperand.slice(0, -1);
+  } else {
+    secondOperand = secondOperand.slice(0, -1);
+  }
+  const resultDisplay = document.querySelector(".input");
+  if (resultDisplay === null) {
+    return;
+  } else if (secondOperand === "") {
+    resultDisplay.textContent = firstOperand;
+  } else {
+    resultDisplay.textContent = secondOperand;
+  }
+});
