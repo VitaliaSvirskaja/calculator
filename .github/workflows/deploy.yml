@@ -6,14 +6,18 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v2
-      - name: Run Deploy Script
-        run: |
-          chmod +x ./deploy.sh
-          ./deploy.sh
-        shell: bash
-#      - name: Build Vite Project
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: '14'
-#      - run: npm install
-#      - run: npm run build
+#      - name: Run Deploy Script
+#        run: |
+#          chmod +x ./deploy.sh
+#          ./deploy.sh
+#        shell: bash
+      - name: Build Vite Project
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm run build
+      - name: Deploy
+        uses: actions/checkout@v2
+        working-directory: ./dist
+        run: git push -f git@github.com:VitaliaSvirskaja/calculator.git main:gh-pages
