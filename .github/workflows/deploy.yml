@@ -18,13 +18,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Deploy
-#        uses: actions/checkout@v2
-        working-directory: ./dist
-        run: |
-          git init
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git checkout -b main
-          git add -A
-          git commit -m 'deploy'
-          git push -f git@github.com:VitaliaSvirskaja/calculator.git main:gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: dist
