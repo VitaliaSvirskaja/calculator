@@ -7,7 +7,8 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2
       - name: Run Deploy Script
-        run:
+        run: |
+          chmod +x ./deploy.sh
           ./deploy.sh
         shell: bash
 #      - name: Build Vite Project
