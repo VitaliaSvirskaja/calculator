@@ -18,6 +18,6 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Deploy
-        uses: actions/checkout@v2
+#        uses: actions/checkout@v2
         working-directory: ./dist
         run: git push -f git@github.com:VitaliaSvirskaja/calculator.git main:gh-pages
